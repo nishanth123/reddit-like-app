@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import myArticles from './../../data/articles.json';
 import myCategories from './../../data/categories.json';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ArticleComponent from '../components/ArticleComponent';
 
 export default class TabComponent extends React.Component {
   constructor(props) {
@@ -35,44 +36,27 @@ export default class TabComponent extends React.Component {
   getTabElements(){
     return this.state.options.map(category => {
       return (
-        <Tab><p className="option__text"><a href={category}>{category}</a></p></Tab>              
+        <Tab><p className="option__text"><a>{category}</a></p></Tab>              
       )});
   }
 
-  getArticlePage(tabIndex, screenNo) {
+  getArticlePage(tabIndex) {
 
-    if (screenNo === 0){
-
-      return this.articleList.map(tabArticles => {
-          return (
-            <TabPanel>
-              {tabArticles.map(
-                articleName => (
-                  <div>
-                      <p className="option__text"><a>{myArticles[articleName]['title']}</a></p>
-                      <p className="option__text">{(myArticles[articleName]['content']).substring(0, 20) + "..."}</p>
-                      <br/>
-                  </div>
-                )
-              )}
-            </TabPanel>
-      )});
-    } else {
-      return this.articleList.map(tabArticles => {
+    return this.articleList.map(tabArticles => {
         return (
           <TabPanel>
             {tabArticles.map(
               articleName => (
                 <div>
-                    <p className="option__text">{myArticles[articleName]['title']}</p>
-                    <p className="option__text">{myArticles[articleName]['content']}</p>
+                    <p className="option__text"><a href="/article">{myArticles[articleName]['title']}</a></p>
+                    <p className="option__text">{(myArticles[articleName]['content']).substring(0, 20) + "..."}</p>
                     <br/>
                 </div>
               )
             )}
           </TabPanel>
-      )});
-    }
+    )});
+  
   }
 
   render() {
@@ -84,7 +68,7 @@ export default class TabComponent extends React.Component {
 
         </TabList>
         
-          {this.getArticlePage(this.state.tabIndex, 0)}
+          {this.getArticlePage(this.state.tabIndex)}
 
       </Tabs>
     );
