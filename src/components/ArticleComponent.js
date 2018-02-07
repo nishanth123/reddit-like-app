@@ -18,18 +18,21 @@ export default class ArticleComponent extends React.Component {
   };
 
   componentDidMount() {
+    console.log(this.props.location);
+    console.log(this.props.match.params.articleName);
     console.log('In ArticleComponent Mount now');
   }
 
   render() {
     
+    const articleName = this.props.match.params.articleName;
     return (
       
       <div className="page-header">
         <div className="content-container">
           <br/>
-          <p className="option__text"><a href="article">{myArticles['art1']['title']}</a></p>
-          <p className="option__text">{(myArticles['art1']['content'])}</p>
+          <p className="option__text">{myArticles[articleName]['title']}</p>
+          <p className="option__text">{(myArticles[articleName]['content'])}</p>
           <br/>
         </div>
       </div>

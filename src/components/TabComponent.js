@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+
 import myArticles from './../../data/articles.json';
 import myCategories from './../../data/categories.json';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -48,7 +50,9 @@ export default class TabComponent extends React.Component {
             {tabArticles.map(
               articleName => (
                 <div>
-                    <p className="option__text"><a href="article">{myArticles[articleName]['title']}</a></p>
+                    <p className="option__text">
+                      <Link to={`article/${articleName}`}>{myArticles[articleName]['title']}</Link>
+                    </p>
                     <p className="option__text">{(myArticles[articleName]['content']).substring(0, 20) + "..."}</p>
                     <br/>
                 </div>
