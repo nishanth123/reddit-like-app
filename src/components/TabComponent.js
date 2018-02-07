@@ -48,7 +48,7 @@ export default class TabComponent extends React.Component {
             {tabArticles.map(
               articleName => (
                 <div>
-                    <p className="option__text"><a href="/article">{myArticles[articleName]['title']}</a></p>
+                    <p className="option__text"><a href="article">{myArticles[articleName]['title']}</a></p>
                     <p className="option__text">{(myArticles[articleName]['content']).substring(0, 20) + "..."}</p>
                     <br/>
                 </div>
@@ -58,7 +58,7 @@ export default class TabComponent extends React.Component {
     )});
   
   }
-
+  // this is the render method
   render() {
     
     return (

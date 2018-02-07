@@ -14,7 +14,7 @@ module.exports = {
 			exclude: /node_modules/,
 			query:
 			{
-			  presets:['react']
+			  presets:['react', 'stage-3']
 			}
 		}, 
 		{
