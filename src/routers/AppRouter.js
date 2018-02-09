@@ -17,8 +17,8 @@ const AppRouter = () => {
                 <div>
                         <Switch>
                                 <Route exact path="/reddit-like-app/" component={TabComponent} />
-                                <Route exact path="/" component={TabComponent} />
-                                <Route path="/article/:articleName" component={ArticleComponent} />
+                                {/* <Route exact path="/" component={TabComponent} /> */}
+                                <Route path="/reddit-like-app/article/:articleName" component={ArticleComponent} />
                                 <Route component={NotFoundPage} />
                                 {/* <Route path="/new" component={() => <Redirect to='/index.html' push/>} />
                                 <Route path="/latest" component={() => <Redirect to='/index.html' push/>} />  */}
