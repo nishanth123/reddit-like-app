@@ -17,6 +17,8 @@
 		"babel-plugin-transform-class-properties": "6.24.1",
 		"babel-preset-env": "1.5.2",
 		"babel-preset-react": "6.24.1",
+		"babel-polyfill": "~6.13.0",
+		"immutable": "~3.8.1",
 		"css-loader": "^0.28.4",
 		"live-server": "^1.2.0",
 		"node-sass": "4.5.3",
@@ -25,18 +27,24 @@
 		"react-dom": "^16.2.0",
 		"react-modal": "^3.1.10",
 		"react-redux": "^5.0.6",
+		"react-router": "~2.8.1",
+		"react-router-redux": "~4.0.6",
 		"react-router-dom": "4.1.2",
 		"react-tabs": "^2.2.1",
 		"redux": "^3.7.2",
 		"redux-thunk": "*",
+		"reselect": "~2.5.4",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.1",
 		"validator": "8.0.0",
+		"classnames": "~2.2.5",
 		"webpack": "^3.10.0",
 		"webpack-dev-server": "^2.5.1",
 		"webpack-watch-server": "^1.2.1"
 	},
 	"devDependencies": {
-		"babel-preset-stage-3": "^6.24.1"
+		"babel-preset-stage-3": "^6.24.1",
+		"firebase": "~3.4.0",
+    "firebase-tools": "3.0.7"
 	}
 }

@@ -6,6 +6,11 @@ import ArticleComponent from '../components/ArticleComponent';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { isAuthenticated } from '../../src/core/auth';
+import App from './../app';
+import SignIn from './../pages/sign-in';
+import SignUp from './../pages/sign-up';
+import Home from './../pages/home';
 
 export const history = createHistory();
 
