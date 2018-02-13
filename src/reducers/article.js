@@ -1,31 +1,29 @@
 // Articles Reducer
-
-const articleReducerDefaultState = [];
-
-export default (state = articleReducerDefaultState, action) => {
+const articles = (state = [], action) => {
 	switch (action.type) {
-		case 'ADD_ARTICLE':
+		case ADD_ARTICLE:
 			return [
 				...state,
-				action.article
-			];
-		case 'REMOVE_ARTICLE':
-			return state.filter(({ id }) => id !== action.id);
-		case 'EDIT_ARTICLE':
-			return state.map((article) => {
-				if (article.id === action.id) {
-					return {
-						...article,
-						...action.updates
-					};
-				} else {
-					return article;
-				};
-			});
-		case 'SET_ARTICLE':
-			return action.article;
-		default: 
-			return state;
+				{
+					id: action.id,
+					text: action.text,
+					completed: false
+				}
+			]
+		case TOGGLE_ARTICLE:
+			return state.map((article, index) => {
+				if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          })
+			}
+				
+			return article
+		})
+		default:
+			return state	
 	}
+
 };
 
+export default articles
