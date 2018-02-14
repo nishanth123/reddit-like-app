@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import myArticles from './../../data/articles.json';
-import myCategories from './../../data/categories.json';
 
 export default class ArticleComponent extends React.Component {
   constructor(props) {

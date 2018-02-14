@@ -5,7 +5,7 @@
 	"author": "Nishanth Battula",
 	"license": "MIT",
 	"scripts": {
-		"serve": "live-server public/",
+		"serve": "webpack-dev-server",
 		"dev-server": "webpack-dev-server --env.dev",
 		"build": "webpack --watch",
 		"build:dev": "webpack"

@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
-import articleReducer from '../reducers/article';
+import { articleApp } from './reducers';
 
-let store = createStore(todoApp, window.STATE_FROM_SERVER)
+console.log('test1');
+let store = createStore(articleApp, window.STATE_FROM_SERVER)

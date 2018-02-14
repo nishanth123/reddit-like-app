@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-import myArticles from './../../data/articles.json';
-import myCategories from './../../data/categories.json';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
 
@@ -24,8 +22,9 @@ export default class TabComponent extends React.Component {
   }
 
   componentDidMount() {
+    console.log('test8');
     console.log('In TabComponent Mount now');
-
+    
     let tabs = Object.keys(myCategories);
     this.articleList = Object.values(myCategories);
     this.articlesArray = Object.values(myArticles);

@@ -4,8 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import TabComponent from '../components/TabComponent';
 import ArticleComponent from '../components/ArticleComponent';
 import NotFoundPage from '../components/NotFoundPage';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+
 
 export const history = createHistory();
 
