@@ -1,9 +1,4 @@
-import {
-  addTodo,
-  toggleTodo,
-  setVisibilityFilter,
-  VisibilityFilters
-} from './actions'
+import { addArticle } from './actions'
 
 // Log the initial state
 console.log(store.getState())

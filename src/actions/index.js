@@ -7,19 +7,4 @@ export const ADD_ARTICLE = text => {
 		id: nextArticleId++,
 		text
 	}
-}
-
-export const setVisibilityFilter = filter => {
-	return {
-		type: 'SET_VISIBILITY_FILTER',
-		filter
-	}
-}
-
-export const toggleArticle = id => {
-	return {
-		type: 'TOGGLE_ARTICLE',
-		id
-	}
-}
-
+};
