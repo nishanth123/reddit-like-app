@@ -12,15 +12,15 @@ const ArticleComponent = ArticleComponentContainer;
 
 const AppRouter = () => {
   return (
-        <Router history={history}>
+        <BrowserRouter history={history} basename={"/reddit-like-app"}>
                 <div>
                         <Switch>
-                                <Route exact path="/reddit-like-app/" component={TabComponent} />
-                                <Route path="/reddit-like-app/article/:articleName" component={ArticleComponent} />
+                                <Route exact path="/" component={TabComponent} />
+                                <Route path="/article/:articleName" component={ArticleComponent} />
                                 <Route component={NotFoundPage} />
                         </Switch>
                 </div>
-        </Router>
+        </BrowserRouter>
 );
 }
 
