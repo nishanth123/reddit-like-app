@@ -27,25 +27,11 @@ module.exports = {
 		}]
 	},
 	devtool: 'cheap-module-eval-source-map',
-	// devServer: {
-	// 	contentBase: path.join(__dirname, 'public')
-	// },
+	
 	devServer: {
 		 contentBase: path.join(__dirname, 'public'),
-		 
-		//  contentBase: path.join(__dirname, 'public'),
 		 historyApiFallback: true,
 		 
-		//  historyApiFallback: true,
-		//  proxy: {
-    //   '^\/users|sitters|bookings': {
-    //     target: 'http://127.0.0.1:8080',
-    //     rewrite: function(req) {
-		// 			console.log('in webpack config');
-    //       req.url = req.url.replace(/^\/api/, '');
-    //     }
-    //   }
-    // },
 },
 
 	// watch: true

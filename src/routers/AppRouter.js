@@ -11,8 +11,6 @@ const TabComponent = TabComponentContainer;
 const ArticleComponent = ArticleComponentContainer;
 
 const AppRouter = () => {
-  console.log('In AppRouter');
-
   return (
         <Router history={history}>
                 <div>
