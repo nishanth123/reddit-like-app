@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
-import myArticles from './../../data/articles.json';
-import myCategories from './../../data/categories.json';
+import  articleApp  from './../reducers';
 
 export default class ArticleComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log('test-2');
     this.onSubmit = this.onSubmit.bind(this);      
   }
 
@@ -20,22 +17,49 @@ export default class ArticleComponent extends React.Component {
   componentDidMount() {
     console.log(this.props.location);
     console.log(this.props.match.params.articleName);
-    console.log('In ArticleComponent Mount now');
   }
 
   render() {
     
-    const articleName = this.props.match.params.articleName;
+    const articleId = this.props.match.params.articleName;
+    const myArticles = this.props.articles;
+
+    let articles = Object.values(myArticles)[1];    
+
+    var article = articles[1];
+
+    for (var i in articles){
+
+      var id = articles[i]['id'];
+      
+      if (id == articleId){
+        article = articles[i];
+        break;
+      } 
+    }
+
     return (
       
       <div className="page-header">
         <div className="content-container">
           <br/>
-          <p className="option__text">{myArticles[articleName]['title']}</p>
-          <p className="option__text">{(myArticles[articleName]['content'])}</p>
+          <p className="option__text">{article['title']}</p>
+          <p className="option__text">{(article['text'])}</p>
           <br/>
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    articles: state.articles,
+    categories: state.categories,
+  }
+}
+
+export const ArticleComponentContainer = connect(
+  mapStateToProps,
+  null
+)(ArticleComponent);

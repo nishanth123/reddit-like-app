@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-import myArticles from './../../data/articles.json';
-import myCategories from './../../data/categories.json';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
+import { createStore } from 'redux';
+import { connect } from 'react-redux';
+import  articleApp  from './../reducers';
 
 export default class TabComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.articleList = [];
-    this.articleTitles = [];
-    this.articleDescriptions = [];
-    this.articlesArray = [];
-
+    
     this.state = 
     { 
       tabIndex: 0,
@@ -24,11 +22,30 @@ export default class TabComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log('In TabComponent Mount now');
 
-    let tabs = Object.keys(myCategories);
-    this.articleList = Object.values(myCategories);
-    this.articlesArray = Object.values(myArticles);
+    const myArticles = this.props.articles;
+    let tabs = Object.values(myArticles)[2];
+    let articles = Object.values(myArticles)[1];
+
+    var hotArray = [];
+    var newArray = [];
+    var latestArray = [];
+
+    for (var i in articles){
+      var tabName = articles[i]['tabName'];
+
+      if (tabName === "hot"){
+        hotArray.push(articles[i]);
+      } else if (tabName === "new"){
+        newArray.push(articles[i]);
+      } else {
+        latestArray.push(articles[i]);
+      }
+    }
+
+    this.articleList.push(hotArray); 
+    this.articleList.push(newArray);
+    this.articleList.push(latestArray);
 
     this.setState({
         options: tabs
@@ -43,24 +60,23 @@ export default class TabComponent extends React.Component {
   }
 
   getArticlePage(tabIndex) {
-
+    
     return this.articleList.map(tabArticles => {
         return (
           <TabPanel>
             {tabArticles.map(
-              articleName => (
+              article => (
                 <div>
                     <p className="option__text">
-                      <Link to={`article/${articleName}`}>{myArticles[articleName]['title']}</Link>
+                      <Link to={`article/${article['id']}`}>{article['title']}</Link>
                     </p>
-                    <p className="option__text">{(myArticles[articleName]['content']).substring(0, 20) + "..."}</p>
+                    <p className="option__text">{(article['text']).substring(0, 20) + "..."}</p>
                     <br/>
                 </div>
               )
             )}
           </TabPanel>
     )});
-  
   }
   // this is the render method
   render() {
@@ -78,3 +94,15 @@ export default class TabComponent extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    articles: state.articles,
+    categories: state.categories,
+  }
+}
+
+export const TabComponentContainer = connect(
+  mapStateToProps,
+  null
+)(TabComponent);
