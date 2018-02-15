@@ -41,25 +41,7 @@ const initialState={
 
 // Articles Reducer
 function Articles(state = initialState, action) {
-
-	switch (action.type) {
-
-    case 'ADD_ARTICLE':
-      return Object.assign({}, state, {
-        articles: [
-          ...state.articles,
-          {
-            text: action.text,
-            id: action.id,
-            title: action.title,
-            tabName: action.tabName,
-            completed: true
-          }
-        ]
-      })
-    default:
-      return state
-  }
+    return state
 }
 
 export default Articles
