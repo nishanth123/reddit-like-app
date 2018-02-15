@@ -9,11 +9,7 @@ import  articleApp  from './reducers';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-console.log('test3');
 let store = createStore(articleApp);
-
-console.log(store.getState());
-console.log('test6');
 
 render(
     <Provider store={store}>
@@ -21,6 +17,4 @@ render(
     </Provider>,
     document.getElementById('app')
 )
-
-console.log('test7');
 

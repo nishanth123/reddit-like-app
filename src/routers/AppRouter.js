@@ -1,12 +1,14 @@
 import React from 'react';
 import { Router, BrowserRouter, Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import TabComponent from '../components/TabComponent';
-import ArticleComponent from '../components/ArticleComponent';
+import { TabComponentContainer } from '../components/TabComponent';
+import { ArticleComponentContainer } from '../components/ArticleComponent';
 import NotFoundPage from '../components/NotFoundPage';
 
-
 export const history = createHistory();
+
+const TabComponent = TabComponentContainer;
+const ArticleComponent = ArticleComponentContainer;
 
 const AppRouter = () => {
   console.log('In AppRouter');
@@ -16,11 +18,8 @@ const AppRouter = () => {
                 <div>
                         <Switch>
                                 <Route exact path="/reddit-like-app/" component={TabComponent} />
-                                {/* <Route exact path="/" component={TabComponent} /> */}
                                 <Route path="/reddit-like-app/article/:articleName" component={ArticleComponent} />
                                 <Route component={NotFoundPage} />
-                                {/* <Route path="/new" component={() => <Redirect to='/index.html' push/>} />
-                                <Route path="/latest" component={() => <Redirect to='/index.html' push/>} />  */}
                         </Switch>
                 </div>
         </Router>

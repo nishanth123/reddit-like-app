@@ -1,40 +1,47 @@
 import myArticles from './../../data/articles.json';
 import myCategories from './../../data/categories.json';
 
-console.log('test4');
+var allArticles = [];
 
 let i = 0;
-let tabs = Object.keys(myCategories);
-this.articleList = Object.values(myCategories);
-this.articlesArray = Object.values(myArticles);
+var tabs = Object.keys(myCategories);
 
-console.log(this.articleList);
-//console.log(this.articleArray);
+var articleCategoryMapping = new Map([]);
+
+this.articleList = Object.values(myCategories);
+console.log(myCategories);
+
+var count = 0;
+for (i = 0; i < 3; i++){
+
+  for (var j in this.articleList[i]){
+    count = count + 1;
+
+    articleCategoryMapping[this.articleList[i][j]] = tabs[i];
+
+    var articleName = this.articleList[i][j];
+
+    var article = {
+      id: count,
+      title: myArticles[articleName]['title'],
+      text: myArticles[articleName]['content'],
+      tabName: articleCategoryMapping[articleName],
+      completed: false
+    };
+
+    allArticles.push(article);
+  }
+}
 
 const initialState={
-	articles : [
-  {
-    id: 1,
-    title: 'Novena',
-    text: 'This is sample text in art1',
-    tabName: 'hot',
-		completed: false
-  },
-  {
-    id: 2,
-    title: 'Rosary',
-    text: 'This is sample text in art2',
-    tabName: 'latest',
-		completed: false
-  }
-]
+  tabIndex: 0,
+  articles : allArticles,
+  categories: tabs
 }
 
 // Articles Reducer
 function Articles(state = initialState, action) {
 
-	console.log('test5');
-	
 	switch (action.type) {
 
     case 'ADD_ARTICLE':
