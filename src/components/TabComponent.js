@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
+import AddArticle from '../components/AddArticle';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import  articleApp  from './../reducers';
@@ -14,6 +15,8 @@ export default class TabComponent extends React.Component {
 
     this.articleList = [];
     
+    this.handleAddArticle = this.handleAddArticle.bind(this);
+
     this.state = 
     { 
       tabIndex: 0,
@@ -53,6 +56,7 @@ export default class TabComponent extends React.Component {
   }
 
   getTabElements(){
+    
     return this.state.options.map(category => {
       return (
         <Tab><p className="option__text"><a>{category}</a></p></Tab>              
@@ -78,6 +82,15 @@ export default class TabComponent extends React.Component {
           </TabPanel>
     )});
   }
+
+  handleAddArticle(article) {
+    console.log('test-3');
+
+    this.setState({
+      articles: this.state.articles.concat(article)
+    });
+  }
+
   // this is the render method
   render() {
     
@@ -90,8 +103,15 @@ export default class TabComponent extends React.Component {
         
           {this.getArticlePage(this.state.tabIndex)}
 
+          <AddArticle
+            handleAddArticle={this.handleAddArticle}
+          />
+
       </Tabs>
+
+
     );
+
   }
 }
 

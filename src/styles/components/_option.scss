@@ -10,5 +10,17 @@
   font-weight: 500;
   font-size: 2rem;
   margin: 0;
-  word-break: break-all;
+  word-break: break-all;  
+}
+
+.block__text {
+  color: black;
+  font-weight: 500;
+  font-size: 2rem;
+  margin: 0;
+  word-break: break-all;  
+}
+
+.block__overall {
+  visibility: hidden;  
 }
