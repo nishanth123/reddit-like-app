@@ -71,6 +71,7 @@ export default class TabComponent extends React.Component {
             {tabArticles.map(
               article => (
                 <div>
+                  <br />
                     <p className="option__text">
                       <Link to={`article/${article['id']}`}>{article['title']}</Link>
                     </p>
