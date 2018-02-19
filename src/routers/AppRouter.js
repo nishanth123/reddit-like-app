@@ -3,12 +3,14 @@ import { Router, BrowserRouter, Route, Switch, Link, NavLink, Redirect } from 'r
 import createHistory from 'history/createBrowserHistory';
 import { TabComponentContainer } from '../components/TabComponent';
 import { ArticleComponentContainer } from '../components/ArticleComponent';
+import { AddArticleContainer } from '../components/AddArticle';
 import NotFoundPage from '../components/NotFoundPage';
 
 export const history = createHistory();
 
 const TabComponent = TabComponentContainer;
 const ArticleComponent = ArticleComponentContainer;
+const AddArticle = AddArticleContainer;
 
 const AppRouter = () => {
   return (

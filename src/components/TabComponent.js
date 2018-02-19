@@ -20,7 +20,8 @@ export default class TabComponent extends React.Component {
     this.state = 
     { 
       tabIndex: 0,
-      options: [] 
+      options: [],
+      completed: false 
     };
   }
 
@@ -84,7 +85,7 @@ export default class TabComponent extends React.Component {
     )});
   }
 
-  handleAddArticle(article) {
+  handleAddArticle(e) {
     console.log('test-3');
 
     this.setState({

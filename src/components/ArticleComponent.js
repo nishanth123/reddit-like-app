@@ -22,6 +22,7 @@ export default class ArticleComponent extends React.Component {
     
     const articleId = this.props.match.params.articleName;
     const myArticles = this.props.articles;
+    //console.log(myArticles);
 
     let articles = Object.values(myArticles)[1];    
 
@@ -43,6 +44,7 @@ export default class ArticleComponent extends React.Component {
         <div className="content-container">
           <br/>
           <p className="option__text">{article['title']}</p>
+          <br />
           <p className="option__text">{(article['text'])}</p>
           <br/>
         </div>

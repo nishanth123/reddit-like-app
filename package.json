@@ -28,6 +28,7 @@
 		"react-router-dom": "4.1.2",
 		"react-tabs": "^2.2.1",
 		"redux": "^3.7.2",
+		"redux-logger": "^3.0.6",
 		"redux-thunk": "*",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.1",
