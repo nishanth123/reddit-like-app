@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 import TabComponent from '../components/TabComponent';
-import addArticle from './../actions/article.js';
+import ADD_ARTICLE from './../actions/article.js';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import  articleApp  from './../reducers';

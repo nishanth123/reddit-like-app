@@ -66,6 +66,11 @@ export default class TabComponent extends React.Component {
 
   getArticlePage(tabIndex) {
     
+    const {
+      articles,
+      categories
+    } = this.props;
+
     return this.articleList.map(tabArticles => {
         return (
           <TabPanel>
@@ -74,7 +79,7 @@ export default class TabComponent extends React.Component {
                 <div>
                   <br />
                     <p className="option__text">
-                      <Link to={`article/${article['id']}`}>{article['title']}</Link>
+                      <Link to={`article/${article['id']}`} key={article.id}>{article['title']}</Link>
                     </p>
                     <p className="option__text">{(article['text']).substring(0, 20) + "..."}</p>
                     <br/>
@@ -110,8 +115,6 @@ export default class TabComponent extends React.Component {
           />
 
       </Tabs>
-
-
     );
 
   }
