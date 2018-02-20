@@ -22,8 +22,7 @@ export default class ArticleComponent extends React.Component {
     
     const articleId = this.props.match.params.articleName;
     const myArticles = this.props.articles;
-    //console.log(myArticles);
-
+    
     let articles = Object.values(myArticles)[1];    
 
     var article = articles[1];

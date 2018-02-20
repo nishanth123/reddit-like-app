@@ -1,10 +1,9 @@
-let nextArticleId = 0;
-
-export const ADD_ARTICLE = text => {
+export const addArticle = article => {
+  
   return {
     type: 'ADD_ARTICLE',
-    id: nextArticleId++,
-    text
+    id: article.id,
+    article
     
   }
 }

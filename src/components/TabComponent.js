@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
-import AddArticle from '../components/AddArticle';
+import {  AddArticleContainer } from '../components/AddArticle';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import  articleApp  from './../reducers';
@@ -16,6 +16,8 @@ export default class TabComponent extends React.Component {
     this.articleList = [];
     
     this.handleAddArticle = this.handleAddArticle.bind(this);
+    this.tabChange = this.tabChange.bind(this);
+    this.renderTabPanel = this.renderTabPanel.bind(this);
 
     this.state = 
     { 
@@ -60,47 +62,81 @@ export default class TabComponent extends React.Component {
     
     return this.state.options.map(category => {
       return (
-        <Tab><p className="option__text"><a>{category}</a></p></Tab>              
+        <Tab><p className="option__text" onClick={this.tabChange}><a>{category}</a></p></Tab>              
       )});
   }
 
-  getArticlePage(tabIndex) {
-    
-    const {
-      articles,
-      categories
-    } = this.props;
+  tabChange(e){
+    var tabName = e.target;
+    var tabIndex = 0;
 
-    return this.articleList.map(tabArticles => {
+    var string1 = "<a>hot</a>";
+    console.log(this.props.tabIndex);
+    console.log(tabName);
+
+    var n = string1.localeCompare(tabName);
+
+    if (tabName === '<a>hot</a>'){
+      tabIndex = 0;
+    } else if (tabName === "<a>new</a>"){
+      tabIndex = 1;
+    } else if (tabName === "<a>latest</a>"){
+      tabIndex = 2;
+    }
+
+    console.log(tabName, tabIndex, n);
+
+    this.setState({
+      tabIndex: tabIndex
+    });
+  }
+
+  getArticlePage(tabIndex) {
+    var tabMap = ['hot', 'new', 'latest'];
+
+    console.log(tabMap[tabIndex], this.props.articles.articles);
+
+    return tabMap.map(tabName => {
         return (
           <TabPanel>
-            {tabArticles.map(
-              article => (
-                <div>
-                  <br />
-                    <p className="option__text">
-                      <Link to={`article/${article['id']}`} key={article.id}>{article['title']}</Link>
-                    </p>
-                    <p className="option__text">{(article['text']).substring(0, 20) + "..."}</p>
-                    <br/>
-                </div>
-              )
-            )}
+            {this.renderTabPanel(tabName)}
           </TabPanel>
     )});
   }
 
-  handleAddArticle(e) {
-    console.log('test-3');
+  renderTabPanel(tabName){
+    const tabArticles = this.props.articles.articles.filter((article)=> article.tabName === tabName);
+    console.log('tabName', tabArticles, this.props.articles);
+    
+    return(
+      tabArticles.map(
+        article => (
+          <div>
+            <br />
+              <p className="option__text">
+                <Link to={`article/${article['id']}`} key={article.id}>{article['title']}</Link>
+              </p>
+              <p className="option__text">{(article['text']).substring(0, 20) + "..."}</p>
+              <br/>
+          </div>
+        )
+      )
+    )
+  }
 
-    this.setState({
-      articles: this.state.articles.concat(article)
-    });
+  handleAddArticle(e) {
+    
   }
 
   // this is the render method
   render() {
     
+    const {
+      articles,
+      categories,
+      tabIndex
+    } = this.props;
+
     return (
       <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
         <TabList>
@@ -110,13 +146,11 @@ export default class TabComponent extends React.Component {
         
           {this.getArticlePage(this.state.tabIndex)}
 
-          <AddArticle
-            handleAddArticle={this.handleAddArticle}
+          <AddArticleContainer
+            
           />
-
       </Tabs>
     );
-
   }
 }
 
@@ -124,6 +158,7 @@ function mapStateToProps(state) {
   return {
     articles: state.articles,
     categories: state.categories,
+    tabIndex: state.tabIndex
   }
 }
 

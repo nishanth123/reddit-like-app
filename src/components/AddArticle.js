@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 import TabComponent from '../components/TabComponent';
-import ADD_ARTICLE from './../actions/article.js';
+import { addArticle } from './../actions/article.js';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
-import  articleApp  from './../reducers';
+import { bindActionCreators } from 'redux'
 
+import  articleApp  from './../reducers';
 
 export default class AddArticle extends React.Component {
   constructor(props) {
@@ -55,51 +56,34 @@ export default class AddArticle extends React.Component {
   };
 
   handleSubmit() {
-    // this.setState(
-    //   prevState => (
-    //     { 
-    //       toggle: true 
-    //     }
-    //   )
-    // );
     
-    // console.log(this.state);
-
-    // var article = {};
-    // article['id'] = 30;
-    // article['title'] = this.state.title;
-    // article['text'] = this.state.text;
-    // article['tabName'] = "hot";
-
   }
 
   onClickSubmitButton(){
     this.setState(
       prevState => (
         { 
-          toggle: true 
+          toggle: true,
+          tabIndex: 0 
         }
       )
     );
     
-    console.log(this.state);
-
     var article = {};
-    article['id'] = 30;
+    
     article['title'] = this.state.title;
     article['text'] = this.state.text;
-    article['tabName'] = "hot";
+    article['tabIndex'] = 1;
 
-    // this.setState({
-    //   articles: this.state.articles.concat(article)
-    // });
+    this.props.addArticle(article);
   }
 
   // this is the render method
   render() {
     const {
       title,
-      text
+      text,
+      tabIndex
     } = this.props;
 
     return (
@@ -136,12 +120,12 @@ export default class AddArticle extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    title: title,
-    text: text
+    
   }
 }
 
 function mapDispatchToProps(dispatch) {
+  
   return ({
     ...bindActionCreators(
       { addArticle },

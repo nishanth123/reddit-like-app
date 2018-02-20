@@ -1,6 +1,6 @@
 import myArticles from './../../data/articles.json';
 import myCategories from './../../data/categories.json';
-import { ADD_ARTICLE } from '../actions/article.js';
+import { addArticle } from '../actions/article.js';
 
 var allArticles = [];
 
@@ -43,18 +43,31 @@ const initialState={
 // Articles Reducer
 function Articles(state = initialState, action) {
 
+  var newArticleId = 0;
+  var tabMap = ['hot', 'new', 'latest'];
+
+  for (i = 0; i < allArticles.length; i++){
+    var id = allArticles[i]['id'];
+
+    if (newArticleId < id){
+      newArticleId = id;
+    }
+  }
+
+  newArticleId++;
+
   switch (action.type) {
-    case ADD_ARTICLE:
-      return [
+    case 'ADD_ARTICLE':
+      return {
+
         ...state,
-        {
-          id: action.id,
-          title: action.title,
-          text: action.text,
-          tabIndex: action.tabIndex,
-          completed: false
-        }
-      ]
+         article: state.articles.push({
+           id: newArticleId,
+           title: action.article.title,
+           text: action.article.text,
+           tabName: tabMap[action.article.tabIndex]
+         })
+      }
 
     default:
       return state
