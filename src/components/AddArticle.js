@@ -18,10 +18,10 @@ export default class AddArticle extends React.Component {
     this.onClickSubmitButton = this.onClickSubmitButton.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    
     this.state = {
-      toggle: true
+      toggle: true,
+      tabIndex: this.props.tabIndex
     };
   }
 
@@ -55,16 +55,11 @@ export default class AddArticle extends React.Component {
     });
   };
 
-  handleSubmit() {
-    
-  }
-
   onClickSubmitButton(){
     this.setState(
       prevState => (
         { 
-          toggle: true,
-          tabIndex: 0 
+          toggle: true
         }
       )
     );
@@ -73,7 +68,7 @@ export default class AddArticle extends React.Component {
     
     article['title'] = this.state.title;
     article['text'] = this.state.text;
-    article['tabIndex'] = 1;
+    article['tabIndex'] = this.state.tabIndex;
 
     this.props.addArticle(article);
   }
@@ -120,7 +115,7 @@ export default class AddArticle extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    
+    // tabIndex: state.tabIndex
   }
 }
 

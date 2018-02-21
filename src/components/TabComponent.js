@@ -16,7 +16,6 @@ export default class TabComponent extends React.Component {
     this.articleList = [];
     
     this.handleAddArticle = this.handleAddArticle.bind(this);
-    this.tabChange = this.tabChange.bind(this);
     this.renderTabPanel = this.renderTabPanel.bind(this);
 
     this.state = 
@@ -31,27 +30,6 @@ export default class TabComponent extends React.Component {
 
     const myArticles = this.props.articles;
     let tabs = Object.values(myArticles)[2];
-    let articles = Object.values(myArticles)[1];
-
-    var hotArray = [];
-    var newArray = [];
-    var latestArray = [];
-
-    for (var i in articles){
-      var tabName = articles[i]['tabName'];
-
-      if (tabName === "hot"){
-        hotArray.push(articles[i]);
-      } else if (tabName === "new"){
-        newArray.push(articles[i]);
-      } else {
-        latestArray.push(articles[i]);
-      }
-    }
-
-    this.articleList.push(hotArray); 
-    this.articleList.push(newArray);
-    this.articleList.push(latestArray);
 
     this.setState({
         options: tabs
@@ -62,51 +40,26 @@ export default class TabComponent extends React.Component {
     
     return this.state.options.map(category => {
       return (
-        <Tab><p className="option__text" onClick={this.tabChange}><a>{category}</a></p></Tab>              
+        <Tab><p className="option__text"><a>{category}</a></p></Tab>              
       )});
-  }
-
-  tabChange(e){
-    var tabName = e.target;
-    var tabIndex = 0;
-
-    var string1 = "<a>hot</a>";
-    console.log(this.props.tabIndex);
-    console.log(tabName);
-
-    var n = string1.localeCompare(tabName);
-
-    if (tabName === '<a>hot</a>'){
-      tabIndex = 0;
-    } else if (tabName === "<a>new</a>"){
-      tabIndex = 1;
-    } else if (tabName === "<a>latest</a>"){
-      tabIndex = 2;
-    }
-
-    console.log(tabName, tabIndex, n);
-
-    this.setState({
-      tabIndex: tabIndex
-    });
   }
 
   getArticlePage(tabIndex) {
     var tabMap = ['hot', 'new', 'latest'];
 
-    console.log(tabMap[tabIndex], this.props.articles.articles);
-
     return tabMap.map(tabName => {
         return (
           <TabPanel>
             {this.renderTabPanel(tabName)}
+            <AddArticleContainer tabIndex={this.state.tabIndex}
+            
+            />  
           </TabPanel>
     )});
   }
 
   renderTabPanel(tabName){
     const tabArticles = this.props.articles.articles.filter((article)=> article.tabName === tabName);
-    console.log('tabName', tabArticles, this.props.articles);
     
     return(
       tabArticles.map(
@@ -146,9 +99,7 @@ export default class TabComponent extends React.Component {
         
           {this.getArticlePage(this.state.tabIndex)}
 
-          <AddArticleContainer
-            
-          />
+          
       </Tabs>
     );
   }

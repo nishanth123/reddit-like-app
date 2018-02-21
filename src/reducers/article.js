@@ -1,6 +1,7 @@
 import myArticles from './../../data/articles.json';
 import myCategories from './../../data/categories.json';
 import { addArticle } from '../actions/article.js';
+import TYPES from '../types/article.js';
 
 var allArticles = [];
 
@@ -57,7 +58,7 @@ function Articles(state = initialState, action) {
   newArticleId++;
 
   switch (action.type) {
-    case 'ADD_ARTICLE':
+    case TYPES.ADD_ARTICLE:
       return {
 
         ...state,
@@ -72,7 +73,6 @@ function Articles(state = initialState, action) {
     default:
       return state
   }
-    
 }
 
 export default Articles
