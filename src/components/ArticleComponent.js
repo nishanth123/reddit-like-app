@@ -39,14 +39,16 @@ export default class ArticleComponent extends React.Component {
 
     return (
       
-      <div className="page-header">
-        <div className="content-container">
+
+      <div className="out__article__block">
+        <div className="article__block">
           <br/>
-          <p className="option__text">{article['title']}</p>
+          <p className="option__text__article">{article['title']}</p>
           <br />
           <p className="option__text">{(article['text'])}</p>
           <br/>
         </div>
+        <br />
       </div>
     );
   }

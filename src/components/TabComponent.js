@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
+import { RemoveArticleContainer } from '../components/RemoveArticle';
 import {  AddArticleContainer } from '../components/AddArticle';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import  articleApp  from './../reducers';
+import { removeArticle } from '../actions/removeArticle';
 
 export default class TabComponent extends React.Component {
   constructor(props) {
@@ -36,11 +38,28 @@ export default class TabComponent extends React.Component {
     });
   }
 
+  componentWillMount() {
+    // this.firebaseRef = new Firebase("https://nishanth123.github.io/reddit-like-app/");
+
+    // this.firebaseRef.push({
+    //   text: this.state.text
+    // });
+
+    // this.firebaseRef.on("child_added", function(dataSnapshot) {
+    //    console.log("test-15");
+
+    //    this.items.push(dataSnapshot.val());
+    //    this.setState({
+    //      items: this.props.articles
+    //    });
+    // }.bind(this));
+  }
+
   getTabElements(){
     
     return this.state.options.map(category => {
       return (
-        <Tab><p className="option__text"><a>{category}</a></p></Tab>              
+        <Tab><p className="option__tab_text"><a>{category}</a></p></Tab>              
       )});
   }
 
@@ -64,13 +83,21 @@ export default class TabComponent extends React.Component {
     return(
       tabArticles.map(
         article => (
-          <div>
+          <div className="out__article__block">
+            <div className="article__block">
+              <br />
+              
+             <RemoveArticleContainer id={article['id']}
+
+             />
+
+                <p className="option__text">
+                  <Link to={`article/${article['id']}`}>{article['title']}</Link>
+                </p>
+                <p className="option__text">{(article['text']).substring(0, 200) + "..."}</p>
+                <br/>
+            </div>
             <br />
-              <p className="option__text">
-                <Link to={`article/${article['id']}`} key={article.id}>{article['title']}</Link>
-              </p>
-              <p className="option__text">{(article['text']).substring(0, 20) + "..."}</p>
-              <br/>
           </div>
         )
       )
@@ -99,7 +126,6 @@ export default class TabComponent extends React.Component {
         
           {this.getArticlePage(this.state.tabIndex)}
 
-          
       </Tabs>
     );
   }

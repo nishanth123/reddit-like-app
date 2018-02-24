@@ -23,6 +23,16 @@
   padding: $s-size;
 }
 
+.out__article__block {
+  background: $light-gray;
+  margin: 0 0 $m-size 0;
+}
+
+.article__block {
+  background: $off-white;
+  padding: $xl-size;
+}
+
 @media (min-width: $desktop-breakpoint) {
   .add-option {
     flex-direction: row;

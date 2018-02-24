@@ -59,17 +59,62 @@ function Articles(state = initialState, action) {
 
   switch (action.type) {
     case TYPES.ADD_ARTICLE:
-      return {
 
-        ...state,
-         article: state.articles.push({
-           id: newArticleId,
-           title: action.article.title,
-           text: action.article.text,
-           tabName: tabMap[action.article.tabIndex]
-         })
+      var newArticle = {
+        id: newArticleId,
+        title: action.article.title,
+        text: action.article.text,
+        tabName: tabMap[action.article.tabIndex]
+      };
+
+      var articleForArticlesJSON = {
+        title: action.article.title,
+        content: action.article.text      
+      };
+
+      var artId = "art" + newArticleId;
+      myArticles[artId] = articleForArticlesJSON;
+
+      for(i = 0; i < 3; i++){
+        if (tabs[i] === tabMap[action.article.tabIndex]){
+          myCategories[tabs[i]].push(artId); 
+
+          break;
+        }
       }
 
+      return {
+        ...state,
+        article: state.articles.push(newArticle)
+      }
+
+    case TYPES.REMOVE_ARTICLE:
+    
+      var removeArticleId = action.id;
+      
+      var count = state.articles.length; 
+      var i = 0;
+      var newArray = [];
+
+      for (i = 0; i < count; i++){
+        var article = state.articles[i];
+        
+        if (article.id === action.id){
+          
+        } else {
+          newArray.push(article);
+        }
+      }
+
+      state.articles = newArray;
+      allArticles = newArray;
+
+      return {
+
+          ...state,
+          article: state.articles
+        }  
+      
     default:
       return state
   }

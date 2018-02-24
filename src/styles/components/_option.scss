@@ -6,9 +6,17 @@
 }
 
 .option__text {
-  color: white;
+  color: black;
   font-weight: 500;
   font-size: 2rem;
+  margin: 0;
+  word-break: break-all;  
+}
+
+.option__text__article {
+  color: black;
+  font-weight: 500;
+  font-size: 4rem;
   margin: 0;
   word-break: break-all;  
 }
@@ -17,8 +25,22 @@
   color: black;
   font-weight: 500;
   font-size: 2rem;
+  height: 50px;
   margin: 0;
   word-break: break-all;  
+}
+
+
+.button__close {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  color: black;
+  position: absolute;
+  right: 500px; 
+  padding: 2px;
+  margin-right: 10px;
+  margin-top: -60px;
 }
 
 .block__overall {
