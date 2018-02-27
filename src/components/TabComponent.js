@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ArticleComponent from '../components/ArticleComponent';
 import { RemoveArticleContainer } from '../components/RemoveArticle';
