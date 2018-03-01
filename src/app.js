@@ -19,16 +19,14 @@ const persistConfig = {
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, articleApp)
+const persistedArticleApp = persistReducer(persistConfig, articleApp)
 
-let store = createStore(articleApp, applyMiddleware(logger));
+let store = createStore(persistedArticleApp, applyMiddleware(logger));
 let persistor = persistStore(store)
 
 render(
     <Provider store={store}>
-      <PersistGate loading={<TabComponent />} persistor={persistor}>
         <AppRouter />
-      </PersistGate>
     </Provider>,
     document.getElementById('app')
 )
